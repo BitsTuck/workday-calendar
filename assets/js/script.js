@@ -1,7 +1,47 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-$(function () {
+var today = dayjs();
+  $('#currentDay').text(today.format('DD MMMM YYYY, HH:mm:ss'));
+
+var saveButtonEl = $('.save-button')
+var descriptionEl = $('.new-entry')
+
+function newCalItem(event) {
+  event.preventDefault();
+
+  var newEntry = $('.col-8 col-md-10 description').val();
+  newEntry.text(descriptionEl)
+
+  descriptionEl.append(
+    '<button class="btn saveBtn col-2 col-md-1">Remove</button>'
+  );
+
+  descriptionEl.append(newEntry);
+  $('newEntry').val('');
+
+}
+
+saveButtonEl.on('click', function() {
+var newEntry = descriptionEl.text;
+console.log(newEntry);
+
+localStorage.setItem("newEntry", JSON.stringify(newEntry));
+});
+
+function handleRemoveItem(event) {
+  // convert button we pressed (`event.target`) to a jQuery DOM object
+  var btnClicked = $(event.target);
+
+  // get the parent `<li>` element from the button we pressed and remove it
+  btnClicked.parent('li').remove();
+}
+
+// use event delegation on the `shoppingListEl` to listen for click on any element with a class of `delete-item-btn`
+shoppingListEl.on('click', '.delete-item-btn', handleRemoveItem);
+shoppingFormEl.on('submit', handleFormSubmit);
+
+
     // TODO: Add a listener for click events on the save button. This code should
     // use the id in the containing time-block as a key to save the user input in
     // local storage. HINT: What does `this` reference in the click listener
@@ -20,5 +60,6 @@ $(function () {
     // attribute of each time-block be used to do this?
     //
     // TODO: Add code to display the current date in the header of the page.
-  });
+
+
   
