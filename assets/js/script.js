@@ -1,48 +1,33 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
+//applies dayjs to the page in the desired format
 var rightNow = dayjs();
   $('#currentDay').text(rightNow.format('DD MMMM YYYY, HH:mm:ss'));
 
+//calls elements from the html using jQuerythat need to be global variables
 var saveButtonEl = $('.btn');
 var toDoEl = $('.description');
+
+//isolates the hour of the dayjs for comparison to the times on the calendar sections
 var hour = dayjs().startOf('hour');
 
-console.log(hour)
-
-function showCalItems() {
-  var input = localStorage.getItem("input");
-  var hourId = localStorage.getItem("hourId")
-
-
-toDoEl.textContent = input;
-}
-
+//targets the individual buttons on the calendar. The Target assures that we are noting which button was clicked and attaches it to the calendar entry, and then stores both in local storage
 saveButtonEl.on('click', function(event) {
   event.preventDefault();
-// console.log(toDoEl)
-// console.log(saveButtonEl)
-// console.log(event.currentTarget)
-// console.log(event.currentTarget.parentElement.getAttribute('id'))
-  var newItem = {
-    input: event.currentTarget.parentElement.children[1].value,
-    hourId: event.currentTarget.parentElement.getAttribute('id')
+    let input = event.currentTarget.parentElement.children[1].value
+    let hourId = event.currentTarget.parentElement.getAttribute('id')
+    localStorage.setItem(hourId, input)
+  })
+
+  //Attempts to pull the stored data out of local storage. Currently not successful
+  function showCalItems() {
+    var input = localStorage.getItem('input');
+    var hourId = localStorage.getItem('hourId');
+    
+    toDoEl.textContent = input
   }
-    localStorage.setItem("input", input);
-    localStorage.setItem("hourId", hourId);
+    showCalItems()
+
   
-  
-});
-
-showCalItems()
-
-
-
-// var calEnt = $('.calendar').children('div')
-//   console.log(calEnt)
-// // }
-
-
+//Below are my attempts to isolate and iterate the calendar ids to compare to the dayjs hour and apply the classes of past, present and future to affect the color of the calendar. They are currently not successful.
 
 // function getId (calEnt){
 //   for(i=0; i < 9; i++)
@@ -60,45 +45,15 @@ showCalItems()
 //   for (let i = 0; i < $('.calendar').length ; i++) {
     
   
-//     // if (rightNow < hourId) {
-//     //     toDoEl.attr('class','future')
-//     //   } else if (rightNow > hour){
-//     //     toDoEl.attr('class','past')
-//     //   } else {
-//     //     toDoEl.attr('class','present')
-//     //   };
-//   }
-
-//  }
-
-// getHours()
-
-// var hourId = JSON.stringify(calEnt)
-
-// var toDoList = JSON.parse(localStorage.getItem('list')) || []
-//   toDoList.push(newItem)
-
-//   localStorage.setItem('list', JSON.stringify(toDoList));
-
-//   console.log(localStorage)
+    // if (rightNow < hourId) {
+    //     toDoEl.attr('class','future')
+    //   } else if (rightNow > hour){
+    //     toDoEl.attr('class','past')
+    //   } else {
+    //     toDoEl.attr('class','present')
+    //   };
 
 
-// function() {
-//
-// }
-//look at ID number, manipulate string or call index of number, do for loop
-
-// function handleRemoveItem(event) {
-//   // convert button we pressed (`event.target`) to a jQuery DOM object
-//   var btnClicked = $(event.target);
-
-//   // get the parent `<li>` element from the button we pressed and remove it
-//   btnClicked.parent('li').remove();
-// }
-
-// // use event delegation on the `shoppingListEl` to listen for click on any element with a class of `delete-item-btn`
-// shoppingListEl.on('click', '.delete-item-btn', handleRemoveItem);
-// shoppingFormEl.on('submit', handleFormSubmit);
 
 
 //     // TODO: Add a listener for click events on the save button. This code should
