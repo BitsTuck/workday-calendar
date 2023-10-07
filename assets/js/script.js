@@ -7,11 +7,16 @@ var rightNow = dayjs();
 var saveButtonEl = $('.btn');
 var toDoEl = $('.description');
 var hour = dayjs().startOf('hour');
-var past="";
-var present="";
-var future="";
 
 console.log(hour)
+
+function showCalItems() {
+  var input = localStorage.getItem("input");
+  var hourId = localStorage.getItem("hourId")
+
+
+toDoEl.textContent = input;
+}
 
 saveButtonEl.on('click', function(event) {
   event.preventDefault();
@@ -22,17 +27,20 @@ saveButtonEl.on('click', function(event) {
   var newItem = {
     input: event.currentTarget.parentElement.children[1].value,
     hourId: event.currentTarget.parentElement.getAttribute('id')
-  };
+  }
+    localStorage.setItem("input", input);
+    localStorage.setItem("hourId", hourId);
+  
   
 });
 
-function schedule() {
+showCalItems()
 
-}
 
-var calEnt = $('.calendar').children('div')
-  console.log(calEnt)
-// }
+
+// var calEnt = $('.calendar').children('div')
+//   console.log(calEnt)
+// // }
 
 
 
