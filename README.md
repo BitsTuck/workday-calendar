@@ -3,6 +3,8 @@
 Version 1
 Deployed 7 October 2023
 
+<img width="1468" alt="Screenshot 2023-10-07 at 15 01 54" src="https://github.com/BitsTuck/workday-calendar/assets/144712161/050244ea-20f2-4959-a43a-1d08fbd79052">
+
 
 ## Description
 
