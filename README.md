@@ -6,6 +6,8 @@ Deployed 7 October 2023
 <img width="1468" alt="Screenshot 2023-10-07 at 15 01 54" src="https://github.com/BitsTuck/workday-calendar/assets/144712161/050244ea-20f2-4959-a43a-1d08fbd79052">
 
 
+https://bitstuck.github.io/workday-calendar/
+
 ## Description
 
 The Workday Calendar challenge tested our JavaScript and third-party API capabilities. The goal was to produce a to-do list, using some existing code, that would change colors to reflect whether a given hour was in the past, present, or future. To-do items were to be stored locally for recall so that one could return at any point throughout the day and see what was left to do
